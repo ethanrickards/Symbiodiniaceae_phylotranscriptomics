@@ -1,0 +1,24 @@
+After obtaining RNA-seq raw data, preprocess the rawfastq sequences
+
+```
+java -jar trimmomatic-0.39.jar PE SAMPLE_R1.fastq.gz SAMPLE_R2.fastq.gz SAMPLE_forward_paired.fastq.gz SAMPLE_forward_unpaired.fastq.gz SAMPLE_reverse_paired.fastq.gz SAMPLE_reverse_unpaired.fastq.gz ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:36
+```
+
+Assemble the _de-novo_ transcriptome via Trinity.
+
+```
+Trinity --seqType fq --left SAMPLE_forward_paired.fastq --right SAMPLE_reverse_paired.fastq --max_memory 200G --min_kmer_cov 2 --min_contig_length 300 --bflyCPU 40 --output Trinity_Smert_${file} --bflyHeapSpaceMax 1G --bflyGCThreads 2 --SS_lib_type RF --no_normalize_reads
+```
+
+Change the names of the transcripts to clearly match your sample names
+
+```
+sed "s/>TRINITY_DN/>Smert_tr/" Smert_Trinity.fasta > Smert_Trinity.fasta.mod01 
+awk -F" " '{print $1}' Smert_Trinity.fasta.mod01 > Smert_Trinity.fasta.mod02
+```
+
+Clean and remove redundant transcripts through cdhit
+
+```
+cd-hit-est -i Smert_Trinity.fasta.mod02 -o Smert_cleaned.fasta -c 1.00 -n 5 -M 30000 -d 50 -T 8
+```
