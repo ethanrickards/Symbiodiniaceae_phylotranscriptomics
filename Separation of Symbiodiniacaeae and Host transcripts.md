@@ -1,3 +1,5 @@
+**Classification of Transcripts**
+
 Separation of Symbiodiniaceae from host sea anemone transcripts via Kraken2.  In order to do this, use reference transcriptomes of Symbiodiniaceae and host species.  
 For this study, we used the following transcriptomes for Symbiodiniaceae:
 
@@ -55,10 +57,46 @@ for file in $IN_DIR/*_Trinity.fasta.mod02; do
 			--output ${filename_no_ext}_kraken2_output.txt \
 			--classified-out ${filename_no_ext}_SymAnem_classified_sequences.fasta \
       "${file}"
-		#remove the Kraken Label	
+		#filter out non-Symbiodiniaceae sequences.  Replace the kraken:taxid numbers to correspond to your references.	
 		awk '/^>/ {p=index($0,"kraken:taxid|") && ($0 ~ /kraken:taxid\|2499525|kraken:taxid\|2562237|kraken:taxid\|1381693|kraken:taxid\|2951/)} p' ${filename_no_ext}_SymAnem_classified_sequences.fasta > ${filename_no_ext}_filtered.fasta
-		sed 's/ kraken:taxid|[0-9]*//' ${filename_no_ext}_filtered.fasta > ${filename_no_ext}_SymAnem_Krakenout.fasta
+		#remove the Kraken label
+		sed 's/ kraken:taxid|[0-9]*//' ${filename_no_ext}_filtered.fasta > ${filename_no_ext}_DATABASE_Krakenout.fasta
 	done
 ```
 
-This should generate f
+This should generate five files.  The _Krakenout.fasta should have your filtered and renamed transcripts.  Check the report.txt to see your separations.  For sea anemones ~1/3 of the total transcripts should be classified as Symbiodiniaceae.
+
+Move the files to the desired location.
+If desired, you can do additional cleaning steps here through cdhit or blasting against Symbiodiniaceae genomes and removing any transcripts that have low representation.
+
+**Peptide Prediction**
+
+Use Transdecoder to convert transcripts to peptide for Orthofinder
+
+```
+#!/bin/bash
+#SBATCH --job-name=MULTITRANS
+#SBATCH --partition=compute
+#SBATCH --mem=16G
+#SBATCH --time=1-12:00:00
+#SBATCH --cpus-per-task=4
+#SBATCH --mail-user=ethan.rickards@oist.jp
+#SBATCH --mail-type=FAIL,END
+#SBATCH --array=1
+
+ml bioinfo-ugrp-modules
+ml DebianMed/11.2
+ml salmon
+ml Trinity
+ml trinityrnaseq
+ml R
+ml transdecoder
+
+export IN_DIR="/location/of/Kraken_Outputs"
+
+for file in $IN_DIR/*_Krakenout.fasta; do
+	TransDecoder.LongOrfs -t "$file"
+	TransDecoder.Predict -t "$file"
+done
+```
+This should output .pep files for use in orthofinder.
