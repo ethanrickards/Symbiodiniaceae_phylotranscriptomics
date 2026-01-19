@@ -56,7 +56,7 @@ python Orthogroup_Blast.py . /location/of/concatenated/reference/database ../bla
 ```
 
 You will have a large .tsv file showing the number of total matches and the number of unique matches. You will need to parse through this file. As these are all single-copy, you should see the number of total matches equal the number of samples you have. Unique matches are important in indicating how your gene is represented in the genome, and overall quality of the Orthogroup.  For this, remove orthogroups whose number of total matches does not equal the number of samples you have, or orthogroups who have a very high number of unique matches (we used 50 as the benchmark). If you are running QC on non-single copy orthogroups, the number of total matches should have at least 80% of your total sample count.
-IF you find most of your Orthogroups are low-quality, revist QC prior to performing transdecoder.
+IF you find most of your Orthogroups are low-quality, revist QC prior to performing transdecoder. Consider running blast of the whole transcriptome against the reference transcriptome/genomes, with an e-value target of 1e-10.  
 Create a text file (Orthgroups_for_Concatenation.txt) containing the names of each Orthogroup that passed QC.
 We will then move these Orthogroups into the Orthogroups_for_concatenated_alignment folder.
 
