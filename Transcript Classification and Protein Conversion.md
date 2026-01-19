@@ -71,7 +71,7 @@ If desired, you can do additional cleaning steps here through cdhit or blasting 
 
 **Peptide Prediction**
 
-Use Transdecoder to convert transcripts to peptide for Orthofinder
+Use Transdecoder to convert transcripts to peptide for Orthofinder.  also include references you wish to use as outgroups/comparisons in this step.  We used transcriptomes belonging to those above, along with an outgroup of _Prorocentrum cordatum_
 
 ```
 #!/bin/bash
