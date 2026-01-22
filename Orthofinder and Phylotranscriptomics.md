@@ -39,7 +39,6 @@ for file in *.fa; do
 done
 ```
 
-Adjust the rename_sequences.py to format to your sequence naming conventions! It is vital that your sequence names directly match!
 Next, we want to find the associated transcript. direct to the Renamed_Orthogroups folder
 
 ```
@@ -97,13 +96,13 @@ for file in *.fa; do
 done
 ```
 
-After this, we will concatenate ALL of our sequences using AMAS. 
+After this, we will concatenate ALL of our sequences using AMAS. AMAS is accessible from https://github.com/marekborowiec/AMAS  
 
 ```
 python3 AMAS.py concat -f fasta -d dna -i *.fa -t concatenated_SingleCopy.fa -u fasta
 ```
 
-Then, create a sequence tree of the samples! This will take a while.
+Then, create a sequence tree of the samples. This will take a while.
 
 ```
 iqtree2 -s concatenated_SingleCopy_orthogroups.fa -m MFP -bb 10000 -nt 32
