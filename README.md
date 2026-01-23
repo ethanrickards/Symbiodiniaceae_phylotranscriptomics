@@ -1,10 +1,8 @@
 This repository documents the pipeline used in ___ to distinguish Symbiodiniaceae in Japanese giant sea anemones.
 
-This pipeline was established on an HPC system using SLURM, with modules for the following:
+This pipeline was established using the following dependencies:
 
-cd-hit
-
-DebianMed
+cd-hit (VERSION AND LINK)
 
 fasttree
 
@@ -14,7 +12,7 @@ kraken2
 
 mafft
 
-python3
+python
 
 transdecoder
 
