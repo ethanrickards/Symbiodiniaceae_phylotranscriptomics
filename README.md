@@ -1,19 +1,21 @@
-This repository documents the pipeline used in ___ to distinguish Symbiodiniaceae in Japanese giant sea anemones.
+This repository documents the pipeline used in an upcoming paper by Ethan Rickards to distinguish Symbiodiniaceae in Japanese giant sea anemones.
 
-This pipeline was established using the following dependencies:
+This pipeline was established using an HPC system with the following dependencies:
 
-cd-hit (VERSION AND LINK)
+cd-hit ver. 2016-0304.
 
-fasttree
+fasttree ver. 2.1.11-2. Access: https://morgannprice.github.io/fasttree/
 
-iqtree
+iqtree ver. 1.6.12+dfsg-1 Access: https://iqtree.github.io/doc/Quickstart
 
-kraken2
+Orthofinder Access: https://github.com/davidemms/OrthoFinder
 
-mafft
+kraken2 ver. 2.1.1-1 Access: https://github.com/DerrickWood/kraken2/wiki/Manual
 
-python
+mafft ver. 7.475-1. Access: https://mafft.cbrc.jp/alignment/software/source.html
 
-transdecoder
+python ver. 3.7.3 Access: https://www.python.org/downloads/
 
-Trinity
+transdecoder ver. 5.0.1-3. Access: https://github.com/TransDecoder/TransDecoder
+
+Trinity ver. 2.12.0. Access: https://github.com/trinityrnaseq/trinityrnaseq/wiki/Installing-Trinity
