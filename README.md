@@ -1,5 +1,7 @@
 This repository documents the pipeline used in the upcoming paper "Phylotranscriptomics Reveal Host-Specific _Cladocopium_ in Giant Sea Anemones" (Working Title) by Ethan Rickards, Marine Eco-Evo-Devo Unit, OIST to distinguish Symbiodiniaceae in Japanese giant sea anemones.
 
+Please do not redistribute or share without permission.
+
 This pipeline was established using an HPC system with the following dependencies:
 
 cd-hit ver. 2016-0304.
