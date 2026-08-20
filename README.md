@@ -1,4 +1,4 @@
-This repository documents the pipeline used in the upcoming paper "Phylotranscriptomics Reveal Host-Specific _Cladocopium_ in Giant Sea Anemones" (Working Title) by Ethan Rickards, Marine Eco-Evo-Devo Unit, OIST to distinguish Symbiodiniaceae in Japanese giant sea anemones.
+This repository documents the pipeline used in the upcoming paper "Hidden diversity and host specificity of Cladocopium symbionts revealed by phylotranscriptomics in giant sea anemones" by Ethan Rickards, Marine Eco-Evo-Devo Unit, OIST to distinguish Symbiodiniaceae in Japanese giant sea anemones.
 
 Please do not redistribute or share without permission.
 
